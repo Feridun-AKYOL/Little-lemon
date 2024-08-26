@@ -39,7 +39,7 @@ header nav ul li a {
 /* reservation section */
 .reservation {
   grid-column: 1 / span 12 ;
-  grid-row: 3 / span 1 ;
+  grid-row: 2 / span 1 ;
   display: flex;
   background-color: #4a5d3d;
   color: #fff;
@@ -76,7 +76,6 @@ header nav ul li a {
 .reservation-image {
   padding-top: 10%;
   grid-column: 8 / 11;
-  background-color: #FFC107;
   height:70%;
  
 }
@@ -86,7 +85,56 @@ header nav ul li a {
   border-radius: 10px;
   width: 100%;
 }
+/*Special offers section */
 
+.specials {
+  text-align: center;
+  padding: 15% 0;
+  grid-column: 3 / 12;
+  grid-row-start: 3 / 1;
+}
+
+.specials h2 {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.specials-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.special-item {
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  text-align: left;
+}
+
+.special-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.special-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-btn {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.specials .btn {
+  margin-top: 30px;
+}
 
 .navbar {
   grid-column: 1 / span 12 ;
