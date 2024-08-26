@@ -1,17 +1,24 @@
-import './App.css';
-import Footer from './Components/Footer';
-import Header from './Components/Header';
-import Main from './Components/Main';
-import Navbar from './Components/Navbar';
+import "./App.css";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import Main from "./Components/Main";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <Navbar/>
-      <Main/>
-      <Footer/>
-
+    <div className="container">
+      <div class="header">
+        <Header  />
+      </div>
+      <div className="navbar">
+        <Navbar  />
+      </div>
+      <div className="main">
+        <Main />
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }
