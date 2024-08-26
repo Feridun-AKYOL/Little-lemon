@@ -8,15 +8,13 @@ function App() {
   return (
     <div className="container">
         <Header  />
-        <div className="navbar">
+        <Main  />
+        {/* <div className="navbar">
           <Navbar  />
         </div>
-        <div className="main">
-          <Main  />
-        </div>
         <div className="footer">
-          <Footer  />
-        </div>
+          <Footer  /> 
+        </div>*/}
     </div>
   );
 }

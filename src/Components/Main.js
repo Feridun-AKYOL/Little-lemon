@@ -1,9 +1,12 @@
+import React from 'react';
+import Reservation from './Reservation';
+
 function Main() {
     return(
-        <div>
-            MAIN
+        <>
+           <Reservation />
 
-        </div>
+        </>
     )
 }
 
