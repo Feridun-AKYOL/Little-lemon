@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, minMax(10px, auto));
+  grid-template-rows: repeat(6, minMax(10px, auto));
   background-color: #F4F4F4;
 }
 header {
@@ -24,7 +24,7 @@ header .logo img {
   margin-right: 10px;
 }
 
-header nav ul {
+ul {
   list-style-type: none;
   display: flex;
   gap: 20px;
@@ -136,25 +136,142 @@ header nav ul li a {
   margin-top: 30px;
 }
 
-.navbar {
-  grid-column: 1 / span 12 ;
-  grid-row: 2 / span 1 ;
-  background-color:bisque ;
+.testimonials {
+  grid-column: 3 / 12;
+  grid-row: 4;
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #F8F8F8;
 }
 
-.main {
-  grid-column: 1 / span 12 ;
-  grid-row: 3 / span 1 ;
-  background-color: aqua;
+.testimonials h2 {
+  margin-bottom: 40px;
+  font-size: 32px;
 }
-.footer {
-  grid-column: 1 / span 12 ;
-  grid-row: 4 / span 1 ;
-  background-color: bisque;
+
+.testimonials-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+
+.testimonial {
+  width: 22%;
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
   box-sizing: border-box;
+}
+
+.testimonial-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.testimonial-text {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.testimonial-author {
+  font-weight: bold;
+}
+
+/* About Section */
+.about {
+    grid-column: 3 / 12;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    position: relative;
+}
+
+.about-text {
+    max-width: 50%;
+}
+
+.about-text h2 {
+    font-size: 40pt;
+    margin-bottom: 10px;
+}
+
+.about-text h3 {
+    font-size: 28pt;
+    margin-bottom: 20px;
+}
+
+.about-images {
+  position: relative; /* Make this the containing block for the images */
+  width: 30%; /* Set a width based on the image size */
+  height: 60%; 
+}
+
+.about-image {
+  position: absolute; /* Position the images absolutely */
+  width: 100%; /* Ensure the images take up the full width of the container */
+  height: auto;
+  border-radius: 16px; /* Rounded corners */
+  object-fit: cover;
+}
+
+.about-image1 {
+  z-index: 1; /* Layer the first image on top */
+  top: -10%; /* Adjust position to match the desired overlap */
+  left: -20%; /* Adjust position to match the desired overlap */
+}
+
+.about-image2 {
+  z-index: 2; /* Layer the second image below the first */
+  top: 40%; /* Adjust position to match the desired overlap */
+  right: -10%; /* Adjust position to match the desired overlap */
+}
+
+
+/* Footer */
+.footer {
+  grid-column: 1 / span 12;
+  background-color: #495E57; /* Dark green color */
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.footer h4 {
+  font-size: 18pt;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+  font-size: 16pt;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+
+.footer-section p {
+  font-size: 16pt;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+
+.footer-section li a {
+  text-decoration: none;
+  color: #fff;
 }

@@ -6,7 +6,7 @@ import lemon_cake from '../photos/lemon_cake.jpg' ;
 
 const Weeks_specials = () => {
     return (
-        <section className="specials">
+        <section className="specials" id='specials-section'>
             <h2>This week's specials!</h2>
             <div className="specials-container">
                 <SpecialItem 
