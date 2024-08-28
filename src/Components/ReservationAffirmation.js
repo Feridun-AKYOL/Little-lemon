@@ -1,19 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-const ReservationAffirmation = ({ formData }) => {
+const ReservationAffirmation = () => {
+  const location = useLocation();
+  const { date, time, guests, occasion } = location.state || {};
+
   return (
     <div>
       <h2>Reservation Confirmation</h2>
-      {formData.date ? (
-        <>
-          <p><strong>Date:</strong> {formData.date}</p>
-          <p><strong>Time:</strong> {formData.time}</p>
-          <p><strong>Number of Guests:</strong> {formData.guests}</p>
-          <p><strong>Occasion:</strong> {formData.occasion}</p>
-        </>
-      ) : (
-        <p>No reservation data available.</p>
-      )}
+      <p>Date: {date}</p>
+      <p>Time: {time}</p>
+      <p>Number of Guests: {guests}</p>
+      <p>Occasion: {occasion}</p>
     </div>
   );
 };

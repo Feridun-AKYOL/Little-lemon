@@ -1,15 +1,17 @@
 import "./App.css";
 import CustomersSays from "./Components/CustomersSays";
 import Footer from "./Components/Footer";
-import Main from "./Components/Main";
 import Navbar from "./Components/Navbar";
 import Chicago from "./Components/Chicago";
+import Hero from './Components/Hero';
+import Specials from './Components/Specials'
 
 function App() {
   return (
     <div className="container">
         <Navbar  />
-        <Main  />
+        <Hero />
+        <Specials />
         <CustomersSays/>
         <Chicago />
         <Footer />
