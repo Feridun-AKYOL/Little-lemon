@@ -2,14 +2,14 @@ import React from 'react';
 import BookingForm from './BookingForm';
 import '../Booking.css';
 
-const BookingPage = ({ setFormData }) => {
+const BookingPage = ({ availableTimes, dispatch }) => {
   return (
     <div className='booking'>
       <div className='form-instruction'>
         <p>Fill out the form below to make a reservation.</p>
       </div>
-      {/* Pass the setFormData function to BookingForm */}
-      <BookingForm onFormSubmit={setFormData} />
+      {/* Pass down availableTimes and dispatch to BookingForm */}
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
 
       <footer>
         <p>Thank you for choosing us!</p>

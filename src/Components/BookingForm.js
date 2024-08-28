@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BookingForm = ({ onFormSubmit }) => {
+const BookingForm = ({ availableTimes, dispatch }) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('');
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Hook to navigate between routes
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setDate(newDate);
+    dispatch({ type: 'UPDATE_TIMES', date: newDate });
+  };
 
-  const availableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-
-  const handleDateChange = (e) => setDate(e.target.value);
   const handleTimeChange = (e) => setTime(e.target.value);
   const handleGuestsChange = (e) => setGuests(e.target.value);
   const handleOccasionChange = (e) => setOccasion(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { date, time, guests, occasion };
 
-    onFormSubmit(data); // Send data to parent component
-    navigate('/affirmation'); // Redirect to affirmation page
+    // Redirect to the affirmation page with form data
+    navigate('/affirmation', {
+      state: { date, time, guests, occasion }
+    });
   };
 
   return (

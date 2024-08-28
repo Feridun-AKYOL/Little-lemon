@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import HomePage from './HomePage';
-import BookingPage from './Components/BookingPage';
+// import BookingPage from './Components/BookingPage';
+import Main from './Components/Main';
 import ReservationAffirmation from './Components/ReservationAffirmation';
 import ErrorPage from './Components/error-page';
 import reportWebVitals from './reportWebVitals';
@@ -19,7 +20,7 @@ const App = () => {
     },
     {
       path: "/booking",
-      element: <BookingPage setFormData={setFormData} /> // Pass setFormData to BookingPage
+      element: <Main setFormData={setFormData} /> // Pass setFormData to BookingPage
     },
     {
       path: "/affirmation",

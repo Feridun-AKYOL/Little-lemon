@@ -8,7 +8,7 @@ const Reservation = () => {
                 <h2>Little Lemon</h2>
                 <p>Chicago</p>
                 <p>We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
-                <Link to='booking' className="btn">Reserve a Table</Link>
+                <Link to='/booking' className="btn">Reserve a Table</Link>
             </div>
             <div className="reservation-image">
                 <img src={reservation_image} alt="Little Lemon Specials" />
