@@ -1,0 +1,30 @@
+.booking {
+    height: 100vh;
+    background-color: #f4f4f4;
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+.form-instruction{
+    grid-column: 1 / 12;
+    grid-row-start: 2;
+    display: flex;
+    justify-content: center;
+}
+
+#form {
+    grid-column: 5 / 10;
+    grid-row-start: 4 ;
+    display: grid;
+    max-width: '200px';
+    gap: '20px' 
+}
+
+footer {
+    grid-column: 1 / 12;
+    grid-row-start: 11;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
