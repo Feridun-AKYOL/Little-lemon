@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchAPI,submitAPI } from '../api';
+import { submitAPI } from '../api';
 
-const BookingForm = ({availableTimes, dispatch}) => {
+const BookingForm = ({ availableTimes, dispatch }) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
@@ -11,16 +11,12 @@ const BookingForm = ({availableTimes, dispatch}) => {
 
   useEffect(() => {
     if (date) {
-      const dateObject = new Date(date); // Convert the selected date to a Date object
-      const times = fetchAPI(dateObject); // Pass the Date object directly to fetchAPI
-      dispatch({ type: 'UPDATE_TIMES', time: times });    }
-  }, [date]);
-
+      dispatch({ type: 'UPDATE_TIMES', date });
+    }
+  }, [date, dispatch]);
 
   const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    setDate(newDate);
-    dispatch({ type: 'UPDATE_TIMES', date: newDate });
+    setDate(e.target.value);
   };
 
   const handleTimeChange = (e) => setTime(e.target.value);
@@ -32,7 +28,9 @@ const BookingForm = ({availableTimes, dispatch}) => {
     const formData = new FormData();
     formData.append('date', date);
     formData.append('time', time);
-    // Redirect to the affirmation page with form data
+    formData.append('guests', guests);
+    formData.append('occasion', occasion);
+
     const success = submitAPI(formData);
     if (success) {
       navigate('/affirmation', {
@@ -44,12 +42,13 @@ const BookingForm = ({availableTimes, dispatch}) => {
   };
 
   return (
-    <form id='form' onSubmit={handleSubmit}>
+    <form id="form" onSubmit={handleSubmit}>
       <label htmlFor="res-date">Choose date</label>
       <input type="date" id="res-date" value={date} onChange={handleDateChange} />
 
       <label htmlFor="res-time">Choose time</label>
       <select id="res-time" value={time} onChange={handleTimeChange}>
+        <option>Select a time</option>
         {availableTimes.map((availableTime) => (
           <option key={availableTime} value={availableTime}>
             {availableTime}

@@ -10,27 +10,29 @@ const seededRandom = function (seed) {
 };
 
 export const fetchAPI = function(date) {
-    let result = [];
-    let random = seededRandom(date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate());
+  let result = [];
+  let random = seededRandom(date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate());
 
-    for (let i = 17; i <= 23; i++) {
-        let timeSlot1 = i + ':00';
-        let timeSlot2 = i + ':30';
+  for (let i = 17; i <= 23; i++) {
+    let timeSlot1 = i + ':00';
+    let timeSlot2 = i + ':30';
 
-        // Check if the timeslot is already booked
-        if (!bookingData.some(booking => booking.date === date.toISOString().split('T')[0] && booking.time === timeSlot1)) {
-            if (random() < 0.5) {
-                result.push(timeSlot1);
-            }
-        }
+    const isBooked1 = bookingData.some(
+      booking => booking.date === date.toISOString().split('T')[0] && booking.time === timeSlot1
+    );
+    const isBooked2 = bookingData.some(
+      booking => booking.date === date.toISOString().split('T')[0] && booking.time === timeSlot2
+    );
 
-        if (!bookingData.some(booking => booking.date === date.toISOString().split('T')[0] && booking.time === timeSlot2)) {
-            if (random() < 0.5) {
-                result.push(timeSlot2);
-            }
-        }
+    if (!isBooked1 && random() < 0.5) {
+      result.push(timeSlot1);
     }
-    return result;
+    if (!isBooked2 && random() < 0.5) {
+      result.push(timeSlot2);
+    }
+  }
+
+  return result;
 };
 
 export const submitAPI = function(formData) {
