@@ -39,7 +39,7 @@ const BookingForm = ({availableTimes, dispatch}) => {
         state: { date, time, guests, occasion }
       });
     } else {
-      alert('Booking failed.');
+      alert('The selected time slot is already booked. Please choose a different time.');
     }
   };
 
