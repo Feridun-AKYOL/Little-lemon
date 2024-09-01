@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchAPI,submitAPI } from '../api';
 
-const BookingForm = ({ availableTimes, dispatch }) => {
+const BookingForm = ({availableTimes, dispatch}) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (date) {
+      const dateObject = new Date(date); // Convert the selected date to a Date object
+      const times = fetchAPI(dateObject); // Pass the Date object directly to fetchAPI
+      dispatch({ type: 'UPDATE_TIMES', time: times });    }
+  }, [date]);
+
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;
@@ -20,11 +29,18 @@ const BookingForm = ({ availableTimes, dispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const formData = new FormData();
+    formData.append('date', date);
+    formData.append('time', time);
     // Redirect to the affirmation page with form data
-    navigate('/affirmation', {
-      state: { date, time, guests, occasion }
-    });
+    const success = submitAPI(formData);
+    if (success) {
+      navigate('/affirmation', {
+        state: { date, time, guests, occasion }
+      });
+    } else {
+      alert('Booking failed.');
+    }
   };
 
   return (
