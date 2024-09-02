@@ -7,6 +7,10 @@ const BookingForm = ({ availableTimes, dispatch }) => {
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('');
+  const [firstName, setfirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [phone, setphone] = useState('');
+  const [mail, setmail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +24,10 @@ const BookingForm = ({ availableTimes, dispatch }) => {
   };
 
   const handleTimeChange = (e) => setTime(e.target.value);
+  const handleFirstNameChange = (e) => setfirstName(e.target.value);
+  const handleLastNameChange = (e) => setlastName(e.target.value);
+  const handlePhoneNumberChange = (e) => setphone(e.target.value);
+  const handleEmailChange = (e) => setmail(e.target.value);
   const handleGuestsChange = (e) => setGuests(e.target.value);
   const handleOccasionChange = (e) => setOccasion(e.target.value);
 
@@ -30,11 +38,15 @@ const BookingForm = ({ availableTimes, dispatch }) => {
     formData.append('time', time);
     formData.append('guests', guests);
     formData.append('occasion', occasion);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('phone', phone);
+    formData.append('mail', mail);
 
     const success = submitAPI(formData);
     if (success) {
       navigate('/affirmation', {
-        state: { date, time, guests, occasion }
+        state: { date, time, guests, occasion,firstName, lastName, phone, mail }
       });
     } else {
       alert('The selected time slot is already booked. Please choose a different time.');
@@ -43,6 +55,14 @@ const BookingForm = ({ availableTimes, dispatch }) => {
 
   return (
     <form id="form" onSubmit={handleSubmit}>
+      <label htmlFor="firstName">First Name</label>
+      <input type="text" id="firstName" value={firstName} onChange={handleFirstNameChange} />
+      <label htmlFor="lastName">Last Name</label>
+      <input type="text" id="lastName" value={lastName} onChange={handleLastNameChange} />
+      <label htmlFor="phone">Phone Number</label>
+      <input type="text" id="phone" value={phone} onChange={handlePhoneNumberChange} />
+      <label htmlFor="res-date">E mail</label>
+      <input type="mail" id="mail" value={mail} onChange={handleEmailChange} />
       <label htmlFor="res-date">Choose date</label>
       <input type="date" id="res-date" value={date} onChange={handleDateChange} />
 
