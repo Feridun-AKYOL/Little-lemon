@@ -7,19 +7,20 @@
 }
 
 .form-instruction{
-    grid-column: 1 / 12;
+    grid-column: 5 / 10;
     grid-row-start: 2;
     display: flex;
     justify-content: center;
 }
 
 #form {
-    grid-column: 5 / 10;
+    grid-column: 5 / 12;
     grid-row-start: 4 ;
     display: grid;
     max-width: '200px';
     gap: '20px' 
 }
+
 
 footer {
     grid-column: 1 / 12;

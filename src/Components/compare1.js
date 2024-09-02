@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -19,7 +19,8 @@ const formSchema = Yup.object().shape({
   occasion: Yup.string().required('Occasion is required'),
 });
 
-const BookingForm = ({ availableTimes, dispatch }) => {
+const BookingForm = ({ initialAvailableTimes, dispatch }) => {
+  const [availableTimes, setAvailableTimes] = useState(initialAvailableTimes);
   const navigate = useNavigate();
 
   // Handle date changes and update available times
@@ -51,6 +52,10 @@ const BookingForm = ({ availableTimes, dispatch }) => {
         try {
           const success = await submitAPI(formData);
           if (success) {
+            // Update available times by removing the selected time
+            setAvailableTimes((prevTimes) => prevTimes.filter(time => time !== values.time));
+
+            // Navigate to affirmation page
             navigate('/affirmation', { state: { ...values } });
           } else {
             alert('The selected time slot is already booked. Please choose a different time.');
@@ -92,7 +97,7 @@ const BookingForm = ({ availableTimes, dispatch }) => {
               <option
                 key={availableTime}
                 value={availableTime}
-                disabled={values.time === availableTime} // Disable if selected
+                disabled={values.time === availableTime} // Disable if already selected
                 style={{
                   backgroundColor: values.time === availableTime ? '#d3d3d3' : 'transparent', // Highlight if selected
                 }}
@@ -123,7 +128,9 @@ const BookingForm = ({ availableTimes, dispatch }) => {
           </Field>
           <ErrorMessage name="occasion" component="div" />
 
-          <button type="submit" disabled={isSubmitting}>Make Your Reservation</button>
+          <button type="submit" disabled={isSubmitting}>
+            Make Your Reservation
+          </button>
         </Form>
       )}
     </Formik>
