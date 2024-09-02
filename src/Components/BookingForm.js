@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { submitAPI } from '../api';
 
 const BookingForm = ({ availableTimes, dispatch }) => {
   const [date, setDate] = useState('');
@@ -8,10 +9,14 @@ const BookingForm = ({ availableTimes, dispatch }) => {
   const [occasion, setOccasion] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (date) {
+      dispatch({ type: 'UPDATE_TIMES', date });
+    }
+  }, [date, dispatch]);
+
   const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    setDate(newDate);
-    dispatch({ type: 'UPDATE_TIMES', date: newDate });
+    setDate(e.target.value);
   };
 
   const handleTimeChange = (e) => setTime(e.target.value);
@@ -20,20 +25,30 @@ const BookingForm = ({ availableTimes, dispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('date', date);
+    formData.append('time', time);
+    formData.append('guests', guests);
+    formData.append('occasion', occasion);
 
-    // Redirect to the affirmation page with form data
-    navigate('/affirmation', {
-      state: { date, time, guests, occasion }
-    });
+    const success = submitAPI(formData);
+    if (success) {
+      navigate('/affirmation', {
+        state: { date, time, guests, occasion }
+      });
+    } else {
+      alert('The selected time slot is already booked. Please choose a different time.');
+    }
   };
 
   return (
-    <form id='form' onSubmit={handleSubmit}>
+    <form id="form" onSubmit={handleSubmit}>
       <label htmlFor="res-date">Choose date</label>
       <input type="date" id="res-date" value={date} onChange={handleDateChange} />
 
       <label htmlFor="res-time">Choose time</label>
       <select id="res-time" value={time} onChange={handleTimeChange}>
+        <option>Select a time</option>
         {availableTimes.map((availableTime) => (
           <option key={availableTime} value={availableTime}>
             {availableTime}
