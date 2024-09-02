@@ -3,12 +3,12 @@ import React, { useReducer } from 'react';
 import BookingPage from './BookingPage';
 import { fetchAPI } from '../api';
 
-const initializeTimes = (initialDate) => {
+export const initializeTimes = (initialDate) => {
   // Initialize available times based on today's date or an initial date
   return fetchAPI(initialDate || new Date());
 };
 
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
       return fetchAPI(new Date(action.date)); // Fetch available times based on the selected date
